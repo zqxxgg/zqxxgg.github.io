@@ -209,5 +209,96 @@ window.onload = function(){
 
 </script>
 
+    </div>
+
+</div>
+
+<script>
+
+const nodes = [
+"html",
+"head",
+"body",
+"header",
+"h1: Фірсов...",
+"p: Доцент...",
+"div.left",
+"img: Фото...",
+"Контакти...",
+"Email...",
+"Телефон...",
+"div.center",
+"Про викладача...",
+"Дисципліни...",
+"Розклад...",
+"div.right",
+"Оголошення...",
+"Консультація...",
+"Новини..."
+];
+
+let currentNode = 0;
+
+function showNode(callback){
+
+let text = "Поточний вузол:\n" + nodes[currentNode] + "\n\n";
+
+if(currentNode==0){
+text += "Перейти до наступного вузла?";
+}
+else if(currentNode==nodes.length-1){
+text += "ОК = назад\nСкасувати = вихід";
+}
+else{
+text += "ОК = далі\nСкасувати = назад";
+}
+
+let result = confirm(text);
+
+callback(result);
+
+}
+
+function navigate(result){
+
+if(currentNode==0){
+
+if(result){
+currentNode++;
+showNode(navigate);
+}
+
+return;
+}
+
+if(currentNode==nodes.length-1){
+
+if(result){
+currentNode--;
+showNode(navigate);
+}
+
+return;
+}
+
+if(result){
+currentNode++;
+}
+else{
+currentNode--;
+}
+
+showNode(navigate);
+
+}
+
+window.onload=function(){
+
+showNode(navigate);
+
+}
+
+</script>
+
 </body>
 </html>
